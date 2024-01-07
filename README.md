@@ -42,15 +42,15 @@ Une fois que vous avez configuré et lancé votre conteneur Docker avec MongoDB,
         ```bash
         npm install --force
         ```
-    - L'option `--force` est utilisée pour assurer que toutes les dépendances sont installées même en cas de conflit mineur. Assurez-vous que vous comprenez les implications de l'utilisation de cette option.
+    - L'option `--force` est utilisée pour assurer que toutes les dépendances sont installées même en cas de conflit mineur.
 
 2. **Démarrage de l'application :**
     - Après l'installation des dépendances, vous pouvez lancer votre application en exécutant :
         ```bash
         node server.js
         ```
-    - Cette commande démarre le serveur Node.js défini dans votre fichier `server.js`. Assurez-vous que ce fichier existe et qu'il est correctement configuré pour lancer un serveur web.
-    - Votre serveur devrait maintenant être actif et écouter sur `http://localhost:3000/`. Vous pouvez y accéder via un navigateur web ou en utilisant un client HTTP comme Postman pour interagir avec votre API.
+    - Cette commande démarre le serveur Node.js défini dans votre fichier `server.js`.
+    - Votre serveur devrait maintenant être actif et écouter sur `http://localhost:3000/`.
 
 # Conclusion
 
