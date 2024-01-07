@@ -31,6 +31,26 @@ La mise en place du container Docker se fait en quelques étapes simples. Suivez
     mongoimport --uri mongodb://host.docker.internal:30010/todorarmetest --collection music --type csv --file /data/music_data.csv --headerline
     ```
     Cette commande importe les données du fichier `music_data.csv` dans la collection "music" de la base de données "todorarmetest". Assurez-vous que la base de données et la collection sont correctement nommées selon votre configuration.
+   
+# Mise en place de l'application
+
+Une fois que vous avez configuré et lancé votre conteneur Docker avec MongoDB, suivez ces étapes pour préparer et lancer l'application Node.js.
+
+1. **Installation des dépendances :**
+    - Ouvrez votre terminal et naviguez (`cd`) dans le dossier de votre projet "TPMongoDBAggregate".
+    - Lancez la commande suivante pour installer toutes les dépendances nécessaires listées dans votre fichier `package.json`.
+        ```bash
+        npm install --force
+        ```
+    - L'option `--force` est utilisée pour assurer que toutes les dépendances sont installées même en cas de conflit mineur. Assurez-vous que vous comprenez les implications de l'utilisation de cette option.
+
+2. **Démarrage de l'application :**
+    - Après l'installation des dépendances, vous pouvez lancer votre application en exécutant :
+        ```bash
+        node server.js
+        ```
+    - Cette commande démarre le serveur Node.js défini dans votre fichier `server.js`. Assurez-vous que ce fichier existe et qu'il est correctement configuré pour lancer un serveur web.
+    - Votre serveur devrait maintenant être actif et écouter sur `http://localhost:3000/`. Vous pouvez y accéder via un navigateur web ou en utilisant un client HTTP comme Postman pour interagir avec votre API.
 
 # Conclusion
 
