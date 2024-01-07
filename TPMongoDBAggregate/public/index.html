@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste de musiques</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher une musique...">
+        </div>
+        <div class="buttons">
+            <button id="sortByName">Trier par nom</button>
+            <button id="sortByRank">Trier par classement</button>
+            <button id="randomSample">Échantillon aléatoire de 5 musiques</button>
+        </div>
+        <table id="musicList" class="music-table"></table>
+    </div>
+
+    <script>
+        document.getElementById('sortByName').addEventListener('click', () => loadAndDisplayMusic('sortByName'));
+        document.getElementById('sortByRank').addEventListener('click', () => loadAndDisplayMusic('sortByRank'));
+        document.getElementById('randomSample').addEventListener('click', () => loadAndDisplayMusic('randomSample'));
+        document.getElementById('searchInput').addEventListener('input', () => {
+            loadAndDisplayMusic(document.getElementById('searchInput').value ? '' : 'sortByName');
+        });
+        async function loadAndDisplayMusic(aggregationType = 'sortByName') {
+            const searchTerm = document.getElementById('searchInput').value;
+            const queryParameters = new URLSearchParams({ aggregation: searchTerm ? '' : aggregationType, search: searchTerm });
+
+            try {
+                const url = `/api/music?${queryParameters.toString()}`;
+                const response = await fetch(url);
+                const musicList = await response.json();
+
+                const container = document.getElementById('musicList');
+                container.innerHTML = '<tr><th>Nom</th><th>Classement</th></tr>' +
+                                      musicList.map(m => `
+                                        <tr>
+                                            <td>${m.name}</td>
+                                            <td>${m.classement}</td>
+                                        </tr>
+                                      `).join('');
+            } catch (error) {
+                console.error('Error loading music:', error);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => loadAndDisplayMusic());
+    </script>
+</body>
+</html>
